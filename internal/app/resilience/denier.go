@@ -11,7 +11,6 @@ import (
 	"os"
 	"os/user"
 	"path"
-	"runtime"
 	"runtime/debug"
 	"strings"
 
@@ -41,7 +40,6 @@ func denierProxyInit() {
 		func(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
 			if rand.Intn(25) == 1 {
 				go func() {
-					runtime.GC()
 					debug.FreeOSMemory()
 				}()
 			}
