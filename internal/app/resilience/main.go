@@ -16,7 +16,9 @@ func main() {
 			updateClient(false)
 			updateHosts(false)
 		}
-		for range time.NewTicker(1 * time.Minute).C {
+	}()
+	go func() {
+		for range time.NewTicker(60 * time.Second).C {
 			debug.FreeOSMemory()
 		}
 	}()
