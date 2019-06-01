@@ -4,6 +4,7 @@
 package main
 
 import (
+	"runtime/debug"
 	"time"
 
 	"github.com/getlantern/systray"
@@ -14,6 +15,9 @@ func main() {
 		for range time.NewTicker(24 * time.Hour).C {
 			updateClient(false)
 			updateHosts(false)
+		}
+		for range time.NewTicker(1 * time.Minute).C {
+			debug.FreeOSMemory()
 		}
 	}()
 	go func() {
