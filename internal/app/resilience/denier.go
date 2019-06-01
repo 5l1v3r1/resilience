@@ -6,11 +6,11 @@ package main
 import (
 	"encoding/hex"
 	"io/ioutil"
+	"math/rand"
 	"net/http"
 	"os"
 	"os/user"
 	"path"
-	"rand"
 	"runtime"
 	"runtime/debug"
 	"strings"
