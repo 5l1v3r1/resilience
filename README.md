@@ -30,6 +30,8 @@ Build.cmd dependencies
 Build.cmd
 ```
 
+Resilience will be located at `cmd/resilience/resilience.exe`.
+
 ### Linux and macOS
 ```
 make dependencies
