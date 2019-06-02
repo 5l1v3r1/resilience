@@ -32,7 +32,8 @@ func updateHosts(explicit bool) error {
 		updateHostsError()
 		return err
 	}
-	if explicit && (stateState.hostsHash == strings.Trim(string(b2sum), "\r\n ")) {
+	hostsHash := strings.Trim(string(b2sum), "\r\n ")
+	if explicit && (stateState.hostsHash == hostsHash) {
 		dialog.Message(
 			"No updates are available for your Resilience block list.",
 		).Title("Resilience Update").Info()
