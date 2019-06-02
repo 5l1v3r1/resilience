@@ -87,6 +87,7 @@ func denierUpdate(hosts []byte, write bool) error {
 }
 
 func denierVerifyConfig() error {
+	var err error
 	currentUser, _ := user.Current()
 	hostsFilePath := path.Join(path.Join(path.Join(
 		currentUser.HomeDir, ".config"), "resilience"), "blockList",
@@ -113,7 +114,7 @@ func denierVerifyConfig() error {
 	if err != nil {
 		return err
 	}
-	return nil
+	return err
 }
 
 func denierHostsRead() ([]byte, error) {

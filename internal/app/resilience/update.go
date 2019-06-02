@@ -20,6 +20,7 @@ type updateData struct {
 
 func updateHosts(explicit bool) error {
 	var httpClient = &http.Client{Timeout: 60 * time.Second}
+	var err error
 	r, err := httpClient.Get("https://resilienceblocker.info/data/blockList.b2sum")
 	if err != nil {
 		updateHostsError()
@@ -37,7 +38,7 @@ func updateHosts(explicit bool) error {
 				"No updates are available for your Resilience block list.",
 			).Title("Resilience Update").Info()
 		}
-		return nil
+		return err
 	}
 	r, err = httpClient.Get("https://resilienceblocker.info/data/blockList")
 	if err != nil {
@@ -52,6 +53,7 @@ func updateHosts(explicit bool) error {
 func updateClient(explicit bool) error {
 	var updateResult updateData
 	var httpClient = &http.Client{Timeout: 20 * time.Second}
+	var err error
 	r, err := httpClient.Get("https://resilienceblocker.info/data/updateClient.json")
 	if err != nil {
 		updateClientError()
@@ -81,7 +83,7 @@ func updateClient(explicit bool) error {
 			).Title("Resilience Update").Info()
 		}
 	}
-	return nil
+	return err
 }
 
 func updateHostsError() {
