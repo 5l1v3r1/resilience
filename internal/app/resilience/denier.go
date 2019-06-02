@@ -32,17 +32,17 @@ func denierHostsInit() error {
 }
 
 func denierProxyInit() {
-	stateState.proxy = goproxy.NewProxyHttpServer()
-	stateState.proxy.Verbose = false
-	stateState.proxy.OnRequest().HandleConnectFunc(denierProxyHandler)
-	http.ListenAndServe(":7341", stateState.proxy)
+	stateX.proxy = goproxy.NewProxyHttpServer()
+	stateX.proxy.Verbose = false
+	stateX.proxy.OnRequest().HandleConnectFunc(denierProxyHandler)
+	http.ListenAndServe(":7341", stateX.proxy)
 }
 
 func denierProxyHandler(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
-	if !stateState.enabled {
+	if !stateX.enabled {
 		return goproxy.OkConnect, host
 	}
-	if adblockShouldBlock(stateState.rules, ctx.Req.URL.String(), map[string]interface{}{
+	if adblockShouldBlock(stateX.rules, ctx.Req.URL.String(), map[string]interface{}{
 		"domain": host,
 	}) {
 		return goproxy.RejectConnect, host
@@ -64,9 +64,9 @@ func denierUpdate(hosts []byte, write bool) error {
 		denierUpdateError()
 		return err
 	}
-	stateState.rules = tempRules
+	stateX.rules = tempRules
 	newHash := blake2b.Sum256(hosts)
-	stateState.hostsHash = strings.Join([]string{
+	stateX.hostsHash = strings.Join([]string{
 		hex.EncodeToString(newHash[:]),
 		"blockList",
 	}, "  ")
@@ -141,13 +141,9 @@ func denierHostsWrite(hosts []byte) error {
 }
 
 func denierUpdateError() {
-	dialog.Message(strings.Join([]string{
-		"Could not update your Resilience block list.",
-	}, "\n")).Title("Resilience Error").Error()
+	dialog.Message(stateX.locale.denierUpdateErrorText).Title(stateX.locale.errorTitle).Error()
 }
 
 func denierHostsError() {
-	dialog.Message(strings.Join([]string{
-		"Could not read or write to your local Resilience block list.",
-	}, "\n")).Title("Resilience Error").Error()
+	dialog.Message(stateX.locale.denierHostsErrorText).Title(stateX.locale.errorTitle).Error()
 }

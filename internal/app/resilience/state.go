@@ -15,6 +15,7 @@ type state struct {
 	hostsHash string
 	proxy     *goproxy.ProxyHttpServer
 	rules     *regexp.Regexp
+	locale    *locale
 }
 
 func stateInstatiate() state {
@@ -23,7 +24,8 @@ func stateInstatiate() state {
 		hostsHash: "",
 		proxy:     nil,
 		rules:     nil,
+		locale:    &localeText.en,
 	}
 }
 
-var stateState = stateInstatiate()
+var stateX = stateInstatiate()

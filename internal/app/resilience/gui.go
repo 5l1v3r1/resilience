@@ -45,8 +45,8 @@ func guiBuildAutoStart() *autostart.App {
 		appExec = []string{exePath}
 	}
 	return &autostart.App{
-		Name:        "Resilience",
-		DisplayName: "Resilience",
+		Name:        stateX.locale.resilience,
+		DisplayName: stateX.locale.resilience,
 		Exec:        appExec,
 	}
 }
@@ -55,21 +55,21 @@ func guiBuildTray(guiAutoStart *autostart.App) *guiTrayControls {
 	var guiTray guiTrayControls
 	systray.SetIcon(iconData)
 	if runtime.GOOS != "darwin" {
-		systray.SetTitle("Resilience")
+		systray.SetTitle(stateX.locale.resilience)
 	}
-	systray.SetTooltip("Resilience")
-	guiTray.status = systray.AddMenuItem("Resilience is Enabled", "")
+	systray.SetTooltip(stateX.locale.resilience)
+	guiTray.status = systray.AddMenuItem(stateX.locale.enabled, "")
 	guiTray.status.Disable()
-	guiTray.toggle = systray.AddMenuItem("Disable", "")
+	guiTray.toggle = systray.AddMenuItem(stateX.locale.enable, "")
 	systray.AddSeparator()
-	guiTray.update = systray.AddMenuItem("Update", "Check for Updates.")
+	guiTray.update = systray.AddMenuItem(stateX.locale.update, "")
 	systray.AddSeparator()
-	guiTray.help = systray.AddMenuItem("Getting Started", "Help with Resilience.")
-	guiTray.about = systray.AddMenuItem("About", "About Resilience.")
+	guiTray.help = systray.AddMenuItem(stateX.locale.gettingStarted, "")
+	guiTray.about = systray.AddMenuItem(stateX.locale.about, "")
 	systray.AddSeparator()
-	guiTray.autostart = systray.AddMenuItem("Start on Login", "Automatically Start on Login.")
+	guiTray.autostart = systray.AddMenuItem(stateX.locale.autoStart, "")
 	systray.AddSeparator()
-	guiTray.quit = systray.AddMenuItem("Quit", "Quit Resilience.")
+	guiTray.quit = systray.AddMenuItem(stateX.locale.quit, "")
 	if guiAutoStart.IsEnabled() {
 		guiTray.autostart.Check()
 	}
@@ -98,17 +98,17 @@ func guiTrayMonitor(guiTray *guiTrayControls, guiAutoStart *autostart.App) {
 }
 
 func guiTrayMonitorOnToggle(guiTray *guiTrayControls) {
-	if stateState.enabled {
+	if stateX.enabled {
 		err := togglerDisable()
 		if err == nil {
-			guiTray.status.SetTitle("Resilience is Disabled")
-			guiTray.toggle.SetTitle("Enable")
+			guiTray.status.SetTitle(stateX.locale.disabled)
+			guiTray.toggle.SetTitle(stateX.locale.enable)
 		}
 	} else {
 		err := togglerEnable()
 		if err == nil {
-			guiTray.status.SetTitle("Resilience is Enabled")
-			guiTray.toggle.SetTitle("Disable")
+			guiTray.status.SetTitle(stateX.locale.enabled)
+			guiTray.toggle.SetTitle(stateX.locale.disabled)
 		}
 	}
 }

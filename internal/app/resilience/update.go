@@ -37,7 +37,7 @@ func updateHosts(explicit bool) error {
 		return err
 	}
 	hostsHash := strings.Trim(string(b2sum), "\r\n ")
-	if stateState.hostsHash == hostsHash {
+	if stateX.hostsHash == hostsHash {
 		if explicit {
 			updateHostsNoUpdateInfo()
 		}
@@ -84,33 +84,21 @@ func updateClient(explicit bool) error {
 }
 
 func updateHostsError() {
-	dialog.Message(
-		"Could not update your Resilience block list.",
-	).Title("Resilience Update").Error()
+	dialog.Message(stateX.locale.updateHostsErrorText).Title(stateX.locale.errorTitle).Error()
 }
 
 func updateHostsNoUpdateInfo() {
-	dialog.Message(
-		"No updates are available for your Resilience block list.",
-	).Title("Resilience Update").Info()
+	dialog.Message(stateX.locale.updateHostsNoUpdateInfoText).Title(stateX.locale.updateInfoTitle).Info()
 }
 
 func updateClientError() {
-	dialog.Message(
-		"Could not check for updates for Resilience.",
-	).Title("Resilience Update").Error()
+	dialog.Message(stateX.locale.updateClientErrorText).Title(stateX.locale.errorTitle).Error()
 }
 
 func updateClientHasUpdateInfo() {
-	dialog.Message(strings.Join([]string{
-		"An update is available for your Resilience client.\n",
-		"To download the latest version, please visit:",
-		"https://resilienceblocker.info",
-	}, "\n")).Title("Resilience Update").Info()
+	dialog.Message(stateX.locale.updateClientHasUpdateInfoText).Title(stateX.locale.updateInfoTitle).Info()
 }
 
 func updateClientNoUpdateInfo() {
-	dialog.Message(
-		"No updates are available for your Resilience client.",
-	).Title("Resilience Update").Info()
+	dialog.Message(stateX.locale.updateClientNoUpdateInfoText).Title(stateX.locale.updateInfoTitle).Info()
 }

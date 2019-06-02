@@ -5,11 +5,11 @@
 package main
 
 func togglerEnable() error {
-	stateState.enabled = true
+	stateX.enabled = true
 	return nil
 }
 
 func togglerDisable() error {
-	stateState.enabled = false
+	stateX.enabled = false
 	return nil
 }
