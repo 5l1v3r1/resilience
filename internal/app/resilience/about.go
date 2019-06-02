@@ -11,7 +11,7 @@ import (
 	"github.com/sqweek/dialog"
 )
 
-func aboutDialog() {
+func aboutInfo() {
 	var aboutText = strings.Join([]string{
 		"Resilience " + versionString + "\n",
 		"Resilience is an easy to use content blocker for your computer.",

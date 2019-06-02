@@ -50,7 +50,7 @@ func guiOnReady() {
 			case <-mHelp.ClickedCh:
 				aboutHelpPage()
 			case <-mAbout.ClickedCh:
-				aboutDialog()
+				aboutInfo()
 			case <-mQuit.ClickedCh:
 				systray.Quit()
 			}
