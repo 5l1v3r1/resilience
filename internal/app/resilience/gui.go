@@ -22,6 +22,8 @@ type guiTrayControls struct {
 	quit      *systray.MenuItem
 }
 
+var guiHelpURI = "https://resilienceblocker.info/#help"
+
 func guiOnReady() {
 	guiAutoStart := guiBuildAutoStart()
 	guiTray := guiBuildTray(guiAutoStart)
@@ -119,14 +121,13 @@ func guiTrayMonitorOnUpdate(guiTray *guiTrayControls) {
 }
 
 func guiTrayMonitorOnHelp(guiTray *guiTrayControls) {
-	helpPage := "https://resilienceblocker.info/#help"
 	switch runtime.GOOS {
 	case "windows":
-		exec.Command("rundll32", "url.dll,FileProtocolHandler", helpPage).Start()
+		exec.Command("rundll32", "url.dll,FileProtocolHandler", guiHelpURI).Start()
 	case "linux":
-		exec.Command("xdg-open", helpPage).Start()
+		exec.Command("xdg-open", guiHelpURI).Start()
 	case "darwin":
-		exec.Command("open", helpPage).Start()
+		exec.Command("open", guiHelpURI).Start()
 	}
 }
 
