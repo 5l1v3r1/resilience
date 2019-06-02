@@ -32,6 +32,7 @@ type locale struct {
 
 type locales struct {
 	en locale
+	fr locale
 }
 
 var localeText = locales{
@@ -66,5 +67,37 @@ var localeText = locales{
 			"https://resilienceblocker.info",
 		}, "\n"),
 		updateClientNoUpdateInfoText: "No updates are available for your Resilience client.",
+	},
+	fr: locale{
+		resilience:     "Resilience",
+		aboutInfoTitle: "À propos de Resilience",
+		aboutInfoText: strings.Join([]string{
+			"Resilience " + versionString + "\n",
+			"Resilience est un bloqueur de contenu facile à utiliser pour votre ordinateur.",
+			"Pour des nouvelles et de l'information, veuillez visiter le site :",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		errorTitle:                  "Erreur Resilience",
+		denierUpdateErrorText:       "Impossible de mettre à jour votre liste de blocage Resilience.",
+		denierHostsErrorText:        "Impossible de lire ou d'écrire dans votre liste de blocage de Resilience locale.",
+		enabled:                     "Resilience Activé",
+		disabled:                    "Resilience Désactivé",
+		enable:                      "Activer",
+		disable:                     "Désactiver",
+		update:                      "Mettre a Jour",
+		gettingStarted:              "Aide",
+		about:                       "À Propos",
+		autoStart:                   "Démarrer Automatiquement",
+		quit:                        "Arrêt",
+		updateInfoTitle:             "Mise à Jour Resilience",
+		updateHostsErrorText:        "Impossible de mettre à jour votre liste de blocage Resilience.",
+		updateHostsNoUpdateInfoText: "Aucune mise à jour n'est disponible pour votre liste de blocage Resilience.",
+		updateClientErrorText:       "Impossible de vérifier les mises à jour pour Resilience.",
+		updateClientHasUpdateInfoText: strings.Join([]string{
+			"Une mise à jour est disponible pour votre client Resilience.\n",
+			"Pour télécharger la dernière version, veuillez visiter le site :",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		updateClientNoUpdateInfoText: "Aucune mise à jour n'est disponible pour votre client Resilience.",
 	},
 }
