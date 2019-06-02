@@ -8,7 +8,7 @@ Resilience doesn't sell out your privacy with *"acceptable ads"*. Resilience won
 **Resilience is currently in early alpha!** test, contribute, suggest fixes and improvements! The goal is to get it to a state where it's just as easy to use as uBlock.
 
 ## Goals 
-### Features List`
+### Features List
 - [x] Download blocked hosts list from secure server.
 - [X] Parse [EasyList format](https://adblockplus.org/filter-cheatsheet) into HTTP proxy rules.
 - [X] HTTP proxy for Windows, Linux and macOS.
