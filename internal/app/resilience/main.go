@@ -2,7 +2,7 @@
  * Copyright © 2019-2020 Nadim Kobeissi <nadim@nadim.computer>.
  * All Rights Reserved. */
 
-//go:generate goversioninfo -icon=../../../assets/icon/icon.ico
+//go:generate goversioninfo -64=true -icon=../../../assets/icon/icon.ico
 package main
 
 import (

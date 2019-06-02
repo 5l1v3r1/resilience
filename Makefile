@@ -9,6 +9,7 @@ dependencies:
 	@go get -u github.com/getlantern/systray
 	@go get -u golang.org/x/crypto/blake2b
 	@go get -u github.com/elazarl/goproxy
+	@go get -u github.com/kaepora/go-autostart
 	@/bin/echo " OK"
 
 clean:

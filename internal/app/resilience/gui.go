@@ -4,27 +4,52 @@
 package main
 
 import (
+	"os"
 	"os/exec"
 	"runtime"
 
 	"github.com/getlantern/systray"
+	"github.com/kaepora/go-autostart"
 )
 
 type guiTrayControls struct {
-	status *systray.MenuItem
-	toggle *systray.MenuItem
-	update *systray.MenuItem
-	help   *systray.MenuItem
-	about  *systray.MenuItem
-	quit   *systray.MenuItem
+	status    *systray.MenuItem
+	toggle    *systray.MenuItem
+	update    *systray.MenuItem
+	help      *systray.MenuItem
+	about     *systray.MenuItem
+	autostart *systray.MenuItem
+	quit      *systray.MenuItem
 }
 
 func guiOnReady() {
-	guiTray := guiBuild()
-	guiTrayMonitor(&guiTray)
+	guiAutoStart := guiBuildAutoStart()
+	guiTray := guiBuildTray(guiAutoStart)
+	guiTrayMonitor(guiTray, guiAutoStart)
 }
 
-func guiBuild() guiTrayControls {
+func guiBuildAutoStart() *autostart.App {
+	var appExec []string
+	exePath, _ := os.Executable()
+	switch runtime.GOOS {
+	case "windows":
+		// Tested.
+		appExec = []string{exePath}
+	case "linux":
+		// TODO: Untested.
+		appExec = []string{exePath}
+	case "darwin":
+		// TODO: Untested.
+		appExec = []string{exePath}
+	}
+	return &autostart.App{
+		Name:        "Resilience",
+		DisplayName: "Resilience",
+		Exec:        appExec,
+	}
+}
+
+func guiBuildTray(guiAutoStart *autostart.App) *guiTrayControls {
 	var guiTray guiTrayControls
 	systray.SetIcon(iconData)
 	if runtime.GOOS != "darwin" {
@@ -40,11 +65,16 @@ func guiBuild() guiTrayControls {
 	guiTray.help = systray.AddMenuItem("Getting Started", "Help with Resilience.")
 	guiTray.about = systray.AddMenuItem("About", "About Resilience.")
 	systray.AddSeparator()
+	guiTray.autostart = systray.AddMenuItem("Start on Login", "Automatically Start on Login.")
+	systray.AddSeparator()
 	guiTray.quit = systray.AddMenuItem("Quit", "Quit Resilience.")
-	return guiTray
+	if guiAutoStart.IsEnabled() {
+		guiTray.autostart.Check()
+	}
+	return &guiTray
 }
 
-func guiTrayMonitor(guiTray *guiTrayControls) {
+func guiTrayMonitor(guiTray *guiTrayControls, guiAutoStart *autostart.App) {
 	go func() {
 		for {
 			select {
@@ -56,6 +86,8 @@ func guiTrayMonitor(guiTray *guiTrayControls) {
 				guiTrayMonitorOnHelp(guiTray)
 			case <-guiTray.about.ClickedCh:
 				guiTrayMonitorOnAbout(guiTray)
+			case <-guiTray.autostart.ClickedCh:
+				guiTrayMonitorOnAutoStart(guiTray, guiAutoStart)
 			case <-guiTray.quit.ClickedCh:
 				guiTrayMonitorOnQuit(guiTray)
 			}
@@ -100,6 +132,16 @@ func guiTrayMonitorOnHelp(guiTray *guiTrayControls) {
 
 func guiTrayMonitorOnAbout(guiTray *guiTrayControls) {
 	aboutInfo()
+}
+
+func guiTrayMonitorOnAutoStart(guiTray *guiTrayControls, guiAutoStart *autostart.App) {
+	if guiAutoStart.IsEnabled() {
+		guiAutoStart.Disable()
+		guiTray.autostart.Uncheck()
+	} else {
+		guiAutoStart.Enable()
+		guiTray.autostart.Check()
+	}
 }
 
 func guiTrayMonitorOnQuit(guiTray *guiTrayControls) {
