@@ -60,7 +60,7 @@ func guiBuildTray(guiAutoStart *autostart.App) *guiTrayControls {
 	systray.SetTooltip(stateX.locale.resilience)
 	guiTray.status = systray.AddMenuItem(stateX.locale.enabled, "")
 	guiTray.status.Disable()
-	guiTray.toggle = systray.AddMenuItem(stateX.locale.enable, "")
+	guiTray.toggle = systray.AddMenuItem(stateX.locale.disable, "")
 	systray.AddSeparator()
 	guiTray.update = systray.AddMenuItem(stateX.locale.update, "")
 	systray.AddSeparator()
@@ -108,7 +108,7 @@ func guiTrayMonitorOnToggle(guiTray *guiTrayControls) {
 		err := togglerEnable()
 		if err == nil {
 			guiTray.status.SetTitle(stateX.locale.enabled)
-			guiTray.toggle.SetTitle(stateX.locale.disabled)
+			guiTray.toggle.SetTitle(stateX.locale.disable)
 		}
 	}
 }
