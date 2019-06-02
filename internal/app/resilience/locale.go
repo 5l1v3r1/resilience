@@ -32,6 +32,7 @@ type locale struct {
 
 type locales struct {
 	en locale
+	es locale
 	fr locale
 }
 
@@ -68,6 +69,39 @@ var localeText = locales{
 		}, "\n"),
 		updateClientNoUpdateInfoText: "No updates are available for your Resilience client.",
 	},
+	es: locale{
+		resilience:     "Resilience",
+		aboutInfoTitle: "Sobre Resilience",
+		aboutInfoText: strings.Join([]string{
+			"Resilience " + versionString + "\n",
+			"Resilience es un bloqueador de contenido fácil de usar para tu ordenador.",
+			"Para novedades e información, por favor visita:",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		errorTitle:                  "Error de Resilience",
+		denierUpdateErrorText:       "No se pudo actualizar tu lista de bloqueo de Resilience.",
+		denierHostsErrorText:        "No se pudo leer o escribir tu lista de bloqueo de Resilience.",
+		enabled:                     "Resilience está activado",
+		disabled:                    "Resilience está desactivado",
+		enable:                      "Activar",
+		disable:                     "Desactivar",
+		update:                      "Actualizar",
+		gettingStarted:              "Empezar",
+		about:                       "Acerca de",
+		autoStart:                   "Comenzar al iniciar sesión",
+		quit:                        "Quitar",
+		updateInfoTitle:             "Actualizar Resilience",
+		updateHostsErrorText:        "No se pudo actualizar tu lista de bloqueo de Resilience.",
+		updateHostsNoUpdateInfoText: "No hay actualizaciones disponibles para tu lista de bloque de Resilience.",
+		updateClientErrorText:       "No se pudo comprobar si hay actualizaciones disponibles para Resilience.",
+		updateClientHasUpdateInfoText: strings.Join([]string{
+			"Hay una actaulización disponible para tu cliente Resilience.\n",
+			"Para descargar la última versión, por favor visita:",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		updateClientNoUpdateInfoText: "No hay actualizaciones disponibles para tu cliente Resilience.",
+	},
+
 	fr: locale{
 		resilience:     "Resilience",
 		aboutInfoTitle: "À propos de Resilience",
