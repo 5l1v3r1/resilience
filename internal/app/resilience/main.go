@@ -23,9 +23,9 @@ func main() {
 		}
 	}()
 	go func() {
+		updateHosts(false)
 		denierHostsInit()
 		denierProxyInit()
-		updateHosts(false)
 	}()
 	systray.Run(guiOnReady, guiOnExit)
 }
