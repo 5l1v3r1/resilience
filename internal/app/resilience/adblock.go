@@ -301,12 +301,3 @@ func adblockDomainIndex(rules []*adblockRule) map[string][]*adblockRule {
 	}
 	return result
 }
-
-func adblockAnyTrueValue(mp map[string]bool) bool {
-	for _, it := range mp {
-		if it {
-			return true
-		}
-	}
-	return false
-}
