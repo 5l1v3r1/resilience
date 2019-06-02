@@ -4,8 +4,6 @@
 package main
 
 import (
-	"os/exec"
-	"runtime"
 	"strings"
 
 	"github.com/sqweek/dialog"
@@ -19,16 +17,4 @@ func aboutInfo() {
 		"https://resilienceblocker.info",
 	}, "\n")
 	dialog.Message(aboutText).Title("About Resilience").Info()
-}
-
-func aboutHelpPage() {
-	helpPage := "https://resilienceblocker.info/#help"
-	switch runtime.GOOS {
-	case "windows":
-		exec.Command("rundll32", "url.dll,FileProtocolHandler", helpPage).Start()
-	case "linux":
-		exec.Command("xdg-open", helpPage).Start()
-	case "darwin":
-		exec.Command("open", helpPage).Start()
-	}
 }

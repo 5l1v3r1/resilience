@@ -34,20 +34,20 @@ func denierHostsInit() error {
 func denierProxyInit() {
 	stateState.proxy = goproxy.NewProxyHttpServer()
 	stateState.proxy.Verbose = false
-	stateState.proxy.OnRequest().HandleConnectFunc(
-		func(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
-			if !stateState.enabled {
-				return goproxy.OkConnect, host
-			}
-			if adblockShouldBlock(stateState.rules, ctx.Req.URL.String(), map[string]interface{}{
-				"domain": host,
-			}) {
-				return goproxy.RejectConnect, host
-			}
-			return goproxy.OkConnect, host
-		},
-	)
+	stateState.proxy.OnRequest().HandleConnectFunc(denierProxyHandler)
 	http.ListenAndServe(":7341", stateState.proxy)
+}
+
+func denierProxyHandler(host string, ctx *goproxy.ProxyCtx) (*goproxy.ConnectAction, string) {
+	if !stateState.enabled {
+		return goproxy.OkConnect, host
+	}
+	if adblockShouldBlock(stateState.rules, ctx.Req.URL.String(), map[string]interface{}{
+		"domain": host,
+	}) {
+		return goproxy.RejectConnect, host
+	}
+	return goproxy.OkConnect, host
 }
 
 func denierUpdate(hosts []byte, write bool) error {
@@ -101,11 +101,16 @@ func denierVerifyConfig() error {
 			return err
 		}
 	}
-	configFolderInfo, err = os.Stat(
-		path.Join(currentUser.HomeDir, path.Join(".config", "resilience")),
-	)
+	configFolderInfo, err = os.Stat(path.Join(
+		currentUser.HomeDir,
+		path.Join(".config", "resilience"),
+	))
 	if err != nil || !configFolderInfo.IsDir() {
-		err = os.Mkdir(path.Join(currentUser.HomeDir, path.Join(".config", "resilience")), 0700)
+		err = os.Mkdir(path.Join(
+			currentUser.HomeDir,
+			path.Join(".config", "resilience")),
+			0700,
+		)
 		if err != nil {
 			return err
 		}
