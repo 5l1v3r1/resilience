@@ -26,6 +26,7 @@ You must have [Go](https://golang.org) installed in order to build Resilience.
 
 ### Windows
 ```
+Build.cmd dependencies
 Build.cmd
 ```
 
