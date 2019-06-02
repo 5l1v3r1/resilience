@@ -33,6 +33,7 @@ type locale struct {
 type locales struct {
 	en locale
 	fr locale
+	de locale
 }
 
 var localeText = locales{
