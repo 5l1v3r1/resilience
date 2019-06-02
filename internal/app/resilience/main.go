@@ -8,11 +8,11 @@ import (
 )
 
 func main() {
+	tickersInit()
 	go func() {
 		updateHosts(false)
 		denierHostsInit()
 		denierProxyInit()
-		tickersInit()
 	}()
 	systray.Run(guiOnReady, guiOnExit)
 }
