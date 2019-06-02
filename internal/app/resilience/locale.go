@@ -126,8 +126,8 @@ var localeText = locales{
 		updateHostsNoUpdateInfoText: "Für die Resilience Block-Liste sind keine Updates verfügbar.",
 		updateClientErrorText:       "Konnte nicht nach Updates für Resilience suchen.",
 		updateClientHasUpdateInfoText: strings.Join([]string{
-			"An update is available for your Resilience client.\n",
-			"To download the latest version, please visit:",
+			"Ein Update für Ihren Resilience client ist verfügbar.\n",
+			"Um die neueste Version herunterzuladen besuchen Sie bitte:",
 			"https://resilienceblocker.info",
 		}, "\n"),
 		updateClientNoUpdateInfoText: "Für Resilience sind keine Updates verfügbar.",
