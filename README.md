@@ -17,7 +17,7 @@ Resilience doesn't sell out your privacy with *"acceptable ads"*. Resilience won
 - [x] Check for Resilience client updates automatically.
 - [x] Store block list and load locally on startup -- check remote hash for updates
 - [x] Interface available in English, French, German and Spanish
-- [ ] Web nterface for managing blocks, adding exceptions or custom blocks.
+- [ ] Web interface for managing blocks, adding exceptions or custom blocks.
 
 ### Assets Needed
 - [ ] Website: Help and Docs
