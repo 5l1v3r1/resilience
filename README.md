@@ -16,7 +16,8 @@ Resilience doesn't sell out your privacy with *"acceptable ads"*. Resilience won
 - [x] Automatically update hosts list on startup and every 24 hours.
 - [x] Check for Resilience client updates automatically.
 - [x] Store block list and load locally on startup -- check remote hash for updates
-- [ ] Interface for managing blocks, adding exceptions or custom blocks.
+- [x] Interface available in English, French, German and Spanish
+- [ ] Web nterface for managing blocks, adding exceptions or custom blocks.
 
 ### Assets Needed
 - [ ] Website: Help and Docs
