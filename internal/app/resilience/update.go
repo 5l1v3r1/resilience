@@ -50,6 +50,10 @@ func updateHosts(explicit bool) error {
 	}
 	defer r.Body.Close()
 	hosts, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		updateHostsError()
+		return err
+	}
 	return denierUpdate(hosts, true)
 }
 
