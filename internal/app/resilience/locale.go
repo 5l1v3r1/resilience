@@ -35,6 +35,7 @@ type locales struct {
 	fr locale
 	de locale
 	es locale
+	gr locale
 }
 
 var localeText = locales{
@@ -165,5 +166,37 @@ var localeText = locales{
 			"https://resilienceblocker.info",
 		}, "\n"),
 		updateClientNoUpdateInfoText: "No hay actualizaciones disponibles para tu cliente Resilience.",
+	},
+	gr: locale{
+		resilience:     "Resilience",
+		aboutInfoTitle: "Σχετικά με το Resilience",
+		aboutInfoText: strings.Join([]string{
+			"Resilience " + versionString + "\n",
+			"Το Resilience προσφέρει έναν εύκολο στη χρήση αποκλεισμό περιεχομένου για τον υπολογιστή σας.",
+			"Για νέα και πληροφορίες, επισκεφθείτε τη διεύθυνση:",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		errorTitle:                  "Resilience Σφάλμα",
+		denierUpdateErrorText:       "Δεν ήταν δυνατή η ενημέρωση της λίστας αποκλεισμού Resilience.",
+		denierHostsErrorText:        "Δεν ήταν δυνατή η ανάγνωση ή η εγγραφή στην τοπική λίστα αποκλεισμού Resilience.",
+		enabled:                     "Το Resilience είναι ενεργοποιημένο",
+		disabled:                    "Το Resilience είναι απενεργοποιημένο",
+		enable:                      "Ενεργοποίηση",
+		disable:                     "Απενεργοποίηση",
+		update:                      "Αναβάθμιση",
+		gettingStarted:              "Ξεκινώντας",
+		about:                       "Σχετικά με",
+		autoStart:                   "Αυτόματη έναρξη",
+		quit:                        "Έξοδος",
+		updateInfoTitle:             "Αναβάθμιση του Resilience",
+		updateHostsErrorText:        "Δεν ήταν δυνατή η ενημέρωση της λίστας αποκλεισμού Resilience.",
+		updateHostsNoUpdateInfoText: "Δεν υπάρχουν διαθέσιμες ενημερώσεις για τη λίστα αποκλεισμού Resilience.",
+		updateClientErrorText:       "Δεν ήταν δυνατός ο έλεγχος για ενημερώσεις του Resilience.",
+		updateClientHasUpdateInfoText: strings.Join([]string{
+			"Υπάρχει μια ενημερωμένη έκδοση για το Resilience.\n",
+			"Για να κάνετε λήψη της τελευταίας έκδοσης, επισκεφθείτε τη διεύθυνση:",
+			"https://resilienceblocker.info",
+		}, "\n"),
+		updateClientNoUpdateInfoText: "Δεν υπάρχουν διαθέσιμες ενημερώσεις για το Resilience.",
 	},
 }
